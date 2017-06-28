@@ -1,14 +1,33 @@
 <ion-header>
-  <ion-navbar>
+
+  <ion-navbar color="dark">
     <ion-title>
-      Ionic Blank
+      Random Deck
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content >
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Obtener nuevo deck"
+      refreshingSpinner="circles"
+      refreshingText="Obteniendo nuevo deck...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item *ngFor="let personaje of personajes">
+      <ion-avatar item-start>
+        <img [src]="personaje.img">
+      </ion-avatar>
+      <h3>{{personaje.name}}</h3>
+      <p>{{personaje.faction}} - {{personaje.rarity}} </p>
+      <img item-end [src]="personaje.factionurl">
+      <!--img item-end src="../assets/img/faction/{{personaje.factionid}}.png"-->
+    </ion-item>
+  </ion-list>
+
 </ion-content>
